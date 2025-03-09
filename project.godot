@@ -1,0 +1,28 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Yandex games SDK"
+run/main_scene="uid://dxpg0e4w027fm"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+YandexSDK="*res://addons/yandex_games_sdk/yandex_games_sdk.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/yandex_games_sdk/plugin.cfg")
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
