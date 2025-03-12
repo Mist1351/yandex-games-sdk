@@ -1,6 +1,6 @@
 ## Base class for all Yandex games modules
 ## 
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351
 class_name YandexModule extends RefCounted
 

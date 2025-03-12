@@ -1,6 +1,6 @@
 ## A Module for Managing Game Ratings and Reviews.
 ## 
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Allows you to prompt users to rate your game and leave a comment through a pop-up window that overlays the app background.[br]

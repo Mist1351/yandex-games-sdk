@@ -1,6 +1,6 @@
 ## The Main Class for Integrating Yandex Games Features.
 ##
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## The core class of the plugin, providing a unified interface for accessing Yandex Games features and tools. This class serves as the central hub for managing game-related functionalities, such as advertisements, leaderboards, player data, device information, and more. It simplifies integration and ensures seamless interaction with the Yandex Games SDK.[br]
@@ -41,9 +41,13 @@ signal game_api_paused()
 signal game_api_resumed()
 ## Emitted when the user presses the "Back" button on a TV device.
 signal on_history_back_event()
+## Emitted when the game window gains focus in an HTML5 environment.
+signal on_game_focused()
+## Emitted when the game window loses focus in an HTML5 environment.
+signal on_game_blurred()
 
 
-const SDK_VERSION = "1.0"
+const SDK_VERSION = "1.0.1"
 
 
 ## Module for managing advertisements.
@@ -86,9 +90,20 @@ var _js_on_history_back_callback := JavaScriptBridge.create_callback(
 	func(args_:Array) -> void:
 		on_history_back_event.emit())
 
+var _js_on_window_focus_callback := JavaScriptBridge.create_callback(
+	func(args_:Array) -> void:
+		on_game_focused.emit())
+
+var _js_on_window_blur_callback := JavaScriptBridge.create_callback(
+	func(args_:Array) -> void:
+		on_game_blurred.emit())
+
 
 func _ready() -> void:
 	YandexUtils.init()
+	if YandexUtils.has_property(YandexUtils.js_window, ["addEventListener"]):
+		YandexUtils.js_window.addEventListener("focus", _js_on_window_focus_callback)
+		YandexUtils.js_window.addEventListener("blur", _js_on_window_blur_callback)
 	adv = YandexAdv.new(self)
 	device_info = YandexDeviceInfo.new(self)
 	feedback = YandexFeedback.new(self)
@@ -133,6 +148,16 @@ func _check_availability(property_chain_:Array[String], prefix_:String = "ysdk",
 		_emit_sdk_error(prefix_ + "." + ".".join(property_chain_) + " is not available!")
 		return false
 	return true
+
+
+## Checks whether the game window is currently in focus.[br]
+## [br]
+## It is useful for handling pause mechanics or adjusting game behavior when the player switches tabs.[br]
+## [br]
+## [b]@returns[/b] [bool] — [code]true[/code] if the game is focused, [code]false[/code] otherwise.[br]
+## [b]@see[/b] [signal on_game_focused], [signal on_game_blurred].
+func is_game_focused() -> bool:
+	return YandexUtils.has_focus()
 
 
 ## Retrieve the possible error emitted with the [signal sdk_error] signal.[br]

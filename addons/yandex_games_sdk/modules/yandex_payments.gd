@@ -1,6 +1,6 @@
 ## A Module for Managing In-Game Purchases.
 ## 
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides tools for integrating and managing in-game purchases within your game. With this module, you can offer users additional content or features for purchase, such as extra gameplay time, character accessories, or other enhancements.[br]

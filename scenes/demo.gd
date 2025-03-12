@@ -17,6 +17,8 @@ func _ready() -> void:
 	YandexSDK.game_api_paused.connect(_on_game_api_paused)
 	YandexSDK.game_api_resumed.connect(_on_game_api_resumed)
 	YandexSDK.on_history_back_event.connect(_on_history_back_event)
+	YandexSDK.on_game_focused.connect(_on_game_focused)
+	YandexSDK.on_game_blurred.connect(_on_game_blurred)
 	#endregion
 	
 	#region Adv
@@ -209,6 +211,14 @@ func _on_game_api_resumed() -> void:
 
 func _on_history_back_event() -> void:
 	_logs_signal("YandexSDK.on_history_back_event()")
+
+
+func _on_game_focused() -> void:
+	_logs_signal("YandexSDK.on_game_focused()")
+
+
+func _on_game_blurred() -> void:
+	_logs_signal("YandexSDK.on_game_blurred()")
 
 
 func _on_get_last_sdk_error_pressed() -> void:

@@ -1,6 +1,6 @@
 ## A Module for Retrieving Device Information in Yandex Games.
 ## 
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides simple methods to identify the player's device type, such as mobile, desktop, tablet, or TV.[br]

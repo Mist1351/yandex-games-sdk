@@ -1,6 +1,6 @@
 ## A utility class providing helper functions for working with the Yandex SDK.
 ##
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b][br]
 ## This includes checking features, interacting with JavaScript objects, and retrieving properties dynamically.[br]
@@ -21,6 +21,12 @@ static var js_utils:JavaScriptObject = null
 ## [b]@inner[/b][br]
 ## JavaScript JSON object for parsing and stringifying data.
 static var js_json:JavaScriptObject = null
+## [b]@inner[/b][br]
+## JavaScript document object.
+static var js_document:JavaScriptObject = null
+## [b]@inner[/b][br]
+## JavaScript window object.
+static var js_window:JavaScriptObject = null
 
 
 ## [b]@inner[/b][br]
@@ -39,8 +45,10 @@ static func init() -> void:
 			}
 		}
 		""")
-		js_utils = JavaScriptBridge.get_interface("window").utils
+		js_window = JavaScriptBridge.get_interface("window")
+		js_utils = js_window.utils
 		js_json = JavaScriptBridge.get_interface("JSON")
+		js_document = JavaScriptBridge.get_interface("document")
 
 
 ## [b]@inner[/b][br]
@@ -97,9 +105,22 @@ static func get_property(obj_:JavaScriptObject, property_chain_:Array[String]) -
 	return obj
 
 
+## [b]@inner[/b][br]
+## Checks if the current browser tab is in focus when running in an HTML5 environment.[br]
+## [br]
+## This function uses the JavaScript [code]document.hasFocus()[/code] method to determine whether the game window is active.[br]
+## If the function is unavailable, it defaults to returning [code]true[/code].[br]
+## [br]
+## [b]@returns[/b] [bool] — [code]true[/code] if the browser tab is in focus, [code]false[/code] otherwise.[br]
+static func has_focus() -> bool:
+	if has_property(js_document, ["hasFocus"]):
+		return js_document.hasFocus()
+	return true
+
+
 ## A helper class for limiting the rate of API calls based on a timeout mechanism.
 ## 
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b]
 class CallRateLimiter:

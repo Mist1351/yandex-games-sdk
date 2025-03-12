@@ -1,6 +1,6 @@
 ## A Module for Managing Ads in Yandex Games.
 ## 
-## [b]@version[/b] 1.0[br]
+## [b]@version[/b] 1.0.1[br]
 ## [b]@author[/b] Mist1351[br]
 ## Provides tools for integrating and managing ad units in your games.[br]
 ## [br]
