@@ -1,6 +1,6 @@
 ## A Module for Managing Game Ratings and Reviews.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Allows you to prompt users to rate your game and leave a comment through a pop-up window that overlays the app background.[br]
@@ -39,7 +39,7 @@ const REASON_UNKNOWN = "UNKNOWN"
 var _can_review_reason = null
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	super(yandex_sdk_)
 
 

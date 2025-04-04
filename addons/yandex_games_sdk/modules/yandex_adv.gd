@@ -1,6 +1,6 @@
 ## A Module for Managing Ads in Yandex Games.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## Provides tools for integrating and managing ad units in your games.[br]
 ## [br]
@@ -95,11 +95,11 @@ var _js_on_show_rewarded_video_rewarded := JavaScriptBridge.create_callback(
 		show_rewarded_video_rewarded.emit())
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	super(yandex_sdk_)
 	
 	if null != _yandex_sdk:
-		_yandex_sdk._crl_list.push_back(crl_show_fullscreen)
+		_yandex_sdk._push_crl(crl_show_fullscreen)
 
 
 ## Displays a fullscreen interstitial ad.[br]

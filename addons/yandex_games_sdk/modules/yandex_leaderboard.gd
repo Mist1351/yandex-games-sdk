@@ -1,6 +1,6 @@
 ## A Module for Managing Leaderboards in Yandex Games.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## A Module for managing leaderboard interactions in Yandex Games, including initializing leaderboards, submitting player scores, and retrieving leaderboard data.[br]
@@ -72,14 +72,14 @@ var _leaderboard = null
 var _get_player_entry_code = null
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	super(yandex_sdk_)
 	
 	if null != _yandex_sdk:
-		_yandex_sdk._crl_list.push_back(crl_get_description)
-		_yandex_sdk._crl_list.push_back(crl_set_score)
-		_yandex_sdk._crl_list.push_back(crl_get_player_entry)
-		_yandex_sdk._crl_list.push_back(crl_get_entries)
+		_yandex_sdk._push_crl(crl_get_description)
+		_yandex_sdk._push_crl(crl_set_score)
+		_yandex_sdk._push_crl(crl_get_player_entry)
+		_yandex_sdk._push_crl(crl_get_entries)
 
 
 func _parse_description_js_object(description_:JavaScriptObject) -> Dictionary:

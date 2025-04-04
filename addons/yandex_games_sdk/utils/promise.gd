@@ -1,6 +1,6 @@
 ## A class that wraps JavaScript promises in Godot, allowing asynchronous operations to be awaited.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b][br]
 ## It emits a signal when the operation is settled, either resolved or rejected.[br]
@@ -55,7 +55,7 @@ func wait() -> PromiseResult:
 
 ## A helper class that represents the result of a settled promise.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b]
 class PromiseResult:
@@ -67,7 +67,7 @@ class PromiseResult:
 	## Initializes a new instance of PromiseResult.[br]
 	## [br]
 	## [b]@param[/b] {[bool]} [param status_] — Whether the promise was resolved ([code]true[/code]) or rejected ([code]false[/code]).[br]
-	## [b]@param[/b] {[Variant]} [param value_] — The result value from the promise.[br]
+	## [b]@param[/b] {[Variant]} [param value_] — The result value from the promise.
 	func _init(status_:bool, value_:Variant) -> void:
 		status = status_
 		value = value_

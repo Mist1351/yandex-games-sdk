@@ -1,6 +1,6 @@
 ## A Module for Managing Player Data and Game State.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides tools to save and manage the player's game state data, such as completed levels, experience, or in-game purchases, directly on the Yandex server. It also provides access to user profile information, like the player's name, enabling a more personalized gaming experience.[br]
@@ -95,15 +95,15 @@ var _player:JavaScriptObject = null
 var _string_data = null
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	super(yandex_sdk_)
 	
 	if null != _yandex_sdk:
-		_yandex_sdk._crl_list.push_back(crl_set_data)
-		_yandex_sdk._crl_list.push_back(crl_get_data)
-		_yandex_sdk._crl_list.push_back(crl_set_stats)
-		_yandex_sdk._crl_list.push_back(crl_get_stats)
-		_yandex_sdk._crl_list.push_back(crl_increment_stats)
+		_yandex_sdk._push_crl(crl_set_data)
+		_yandex_sdk._push_crl(crl_get_data)
+		_yandex_sdk._push_crl(crl_set_stats)
+		_yandex_sdk._push_crl(crl_get_stats)
+		_yandex_sdk._push_crl(crl_increment_stats)
 
 
 func _stringify_data(data_:Variant) -> String:

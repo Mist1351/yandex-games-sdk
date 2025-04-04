@@ -1,9 +1,9 @@
 ## A utility class providing helper functions for working with the Yandex SDK.
 ##
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b][br]
-## This includes checking features, interacting with JavaScript objects, and retrieving properties dynamically.[br]
+## This includes checking features, interacting with JavaScript objects, and retrieving properties dynamically.
 class_name YandexUtils extends Object
 
 
@@ -111,7 +111,7 @@ static func get_property(obj_:JavaScriptObject, property_chain_:Array[String]) -
 ## This function uses the JavaScript [code]document.hasFocus()[/code] method to determine whether the game window is active.[br]
 ## If the function is unavailable, it defaults to returning [code]true[/code].[br]
 ## [br]
-## [b]@returns[/b] [bool] — [code]true[/code] if the browser tab is in focus, [code]false[/code] otherwise.[br]
+## [b]@returns[/b] [bool] — [code]true[/code] if the browser tab is in focus, [code]false[/code] otherwise.
 static func has_focus() -> bool:
 	if has_property(js_document, ["hasFocus"]):
 		return js_document.hasFocus()
@@ -120,10 +120,11 @@ static func has_focus() -> bool:
 
 ## A helper class for limiting the rate of API calls based on a timeout mechanism.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b]
 class CallRateLimiter:
+	var _yandex_sdk:YandexGamesSDK = null
 	var _timestamp:int = 0
 	var _requests_count:int = 0
 	var _max_requests_count:int = 0
@@ -151,12 +152,27 @@ class CallRateLimiter:
 	func _reset() -> void:
 		_requests_count = _max_requests_count
 	
+	## Gets the server timestamp.[br]
+	## [br]
+	## [b]@returns[/b] [code]null[/code] — Timestamp not available.[br]
+	## [b]@returns[/b] [int] — A timestamp in milliseconds.
+	func _get_server_timestamp() -> Variant:
+		if null == _yandex_sdk:
+			return null
+		return _yandex_sdk.get_server_time()
+	
 	## Saves the current timestamp from the Yandex SDK server time.
 	func _save_timestamp() -> void:
-		var timestamp = YandexSDK.get_server_time()
+		var timestamp = _get_server_timestamp()
 		if null == timestamp:
 			timestamp = 0
 		_timestamp = timestamp
+	
+	## Sets the YandexGamesSDK instance.[br]
+	## [br]
+	## [b]@param[/b] {[YandexGamesSDK]} [param yandex_sdk_] — The instance of YandexGamesSDK to be used in the game.
+	func set_yandex_sdk(yandex_sdk_:YandexGamesSDK) -> void:
+		_yandex_sdk = yandex_sdk_
 	
 	## Gets the current number of requests remaining.[br]
 	## [br]
@@ -168,7 +184,7 @@ class CallRateLimiter:
 	## [br]
 	## [b]@returns[/b] [int] — The time left in milliseconds.
 	func get_timeout_left() -> int:
-		var timestamp := YandexSDK.get_server_time()
+		var timestamp = _get_server_timestamp()
 		if null == timestamp:
 			return 0
 		

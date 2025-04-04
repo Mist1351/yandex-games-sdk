@@ -1,14 +1,14 @@
 ## Base class for all Yandex games modules
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351
 class_name YandexModule extends RefCounted
 
 
-var _yandex_sdk:YandexSDK = null
+var _yandex_sdk:YandexGamesSDK = null
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	_yandex_sdk = yandex_sdk_
 
 

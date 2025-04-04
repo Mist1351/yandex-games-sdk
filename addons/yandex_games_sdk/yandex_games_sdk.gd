@@ -1,6 +1,6 @@
 ## The Main Class for Integrating Yandex Games Features.
 ##
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## The core class of the plugin, providing a unified interface for accessing Yandex Games features and tools. This class serves as the central hub for managing game-related functionalities, such as advertisements, leaderboards, player data, device information, and more. It simplifies integration and ensures seamless interaction with the Yandex Games SDK.[br]
@@ -47,7 +47,7 @@ signal on_game_focused()
 signal on_game_blurred()
 
 
-const SDK_VERSION = "1.0.1"
+const SDK_VERSION = "1.0.2"
 
 
 ## Module for managing advertisements.
@@ -114,7 +114,7 @@ func _ready() -> void:
 	player = YandexPlayer.new(self)
 	shortcut = YandexShortcut.new(self)
 	
-	_crl_list.push_back(crl_get_flags)
+	_push_crl(crl_get_flags)
 	
 	if YandexUtils.has_auto_init():
 		await init()
@@ -129,6 +129,11 @@ func _process(delta_:float) -> void:
 	
 	for item in _crl_list:
 		item.process()
+
+
+func _push_crl(crl_:YandexUtils.CallRateLimiter) -> void:
+	crl_.set_yandex_sdk(self)
+	_crl_list.push_back(crl_)
 
 
 func _emit_sdk_error(error_:String) -> void:
@@ -163,7 +168,7 @@ func is_game_focused() -> bool:
 ## Retrieve the possible error emitted with the [signal sdk_error] signal.[br]
 ## [br]
 ## [b]@returns[/b] [code]null[/code] — No error is available.[br]
-## [b]@returns[/b] [String] — The emitted error message.[br]
+## [b]@returns[/b] [String] — The emitted error message.
 func get_last_sdk_error() -> Variant:
 	return _last_sdk_error
 
@@ -386,14 +391,14 @@ func send_exit_event() -> void:
 ## [br]
 ## [b]@emits[/b] [signal YandexGamesSDK.sdk_error] — Internal SDK error.[br]
 ## [br]
-## [b]@returns[/b] [code]null[/code] — [YandexGamesSDK] is not initialized;[br]
-## [b]@returns[/b] [Dictionary] — A timestamp in milliseconds representing the current server time.[br]
+## [b]@returns[/b] [code]null[/code] — [YandexGamesSDK] is not initialized.[br]
+## [b]@returns[/b] [int] — A timestamp in milliseconds representing the current server time.[br]
 ## [br]
 ## [b]@example[/b]
 ## [codeblock lang=gdscript]
 ## await YandexSDK.init()
 ## ...
-## var timestamp YandexSDK.get_server_time()
+## var timestamp = YandexSDK.get_server_time()
 ## [/codeblock]
 ## [b]@see[/b] [url]https://yandex.ru/dev/games/doc/en/sdk/sdk-server-time#ysdkservertime[/url]
 func get_server_time() -> Variant:

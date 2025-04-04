@@ -1,6 +1,6 @@
 ## A Module for Managing Fullscreen Browser Mode.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides functionality for interacting with the browser's fullscreen mode.[br]
@@ -21,7 +21,7 @@ signal exit_succeeded()
 signal exit_failed(error_:String)
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	super(yandex_sdk_)
 
 

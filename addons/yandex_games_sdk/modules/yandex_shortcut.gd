@@ -1,6 +1,6 @@
 ## A Module for Adding Game Shortcuts to the Desktop.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Allows you to prompt the user with a native dialog box to add a shortcut link to your game on their desktop.
@@ -27,7 +27,7 @@ signal show_prompt_failed(error_:String)
 var _show_prompt_reason = null
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	super(yandex_sdk_)
 
 

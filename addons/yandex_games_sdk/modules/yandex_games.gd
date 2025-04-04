@@ -1,6 +1,6 @@
 ## A Module for Managing Links to Other Games.
 ## 
-## [b]@version[/b] 1.0.1[br]
+## [b]@version[/b] 1.0.2[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides functionality to retrieve accurate and platform-compatible links to other games hosted on Yandex Games.[br]
@@ -20,7 +20,7 @@ signal get_all_failed(error_:String)
 ## [b]@param[/b] {[bool]} [param is_available_] — Indicates if the game is available.[br]
 ## [b]@param[/b] {[Dictionary]} [param game_] — An object containing information about the game.
 signal get_by_id_succeeded(is_available_:bool, game_:Dictionary)
-## Emitted when retrieving information about a specific game fails.
+## Emitted when retrieving information about a specific game fails.[br]
 ## [b]@param[/b] {[String]} [param error_] — A message describing the reason for the failure.
 signal get_by_id_failed(error_:String)
 
@@ -29,7 +29,7 @@ var _developer_url = null
 var _is_available_game = null
 
 
-func _init(yandex_sdk_:YandexSDK) -> void:
+func _init(yandex_sdk_:YandexGamesSDK) -> void:
 	super(yandex_sdk_)
 
 
