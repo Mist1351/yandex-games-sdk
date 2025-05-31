@@ -4,22 +4,28 @@
 
 ![Godot и Yandex игры](./assets/logo.png "Godot и Yandex игры")
 
+## :memo:️ Дисклеймер
+
+> [!NOTE]
+> Этот **неофициальный** проект Godot плагина на основе [`Yandex Games SDK`](https://yandex.ru/dev/games/doc/ru/sdk/sdk-about "Yandex Games SDK").  
+> Все упоминаемые торговые марки, названия сервисов и логотипы принадлежат их законным правообладателям.  
+> Больше информации: [`https://yandex.ru/dev/games/doc/ru/concepts/quick-start`](https://yandex.ru/dev/games/doc/ru/concepts/quick-start "Yandex Games SDK")
+
 ## Описание
 
 Этот плагин предоставляет интеграцию Yandex Games SDK с игровым движком Godot 4.4+, позволяя разработчикам использовать функции платформы Яндекс Игр, такие как авторизация, сохранение данных, покупки, реклама и многое другое.
 
 ## Установка
 
-Скачайте последний релиз плагина.  
+Скачайте последний релиз плагина - [archive](https://github.com/Mist1351/yandex-games-sdk/releases/latest).  
 Разместите папку `addons/yandex_games_sdk` в директории вашего проекта Godot.  
-Включите плагин `YandexGamesSDK` в `Project Settings → Plugins`.
+Включите плагин `YandexGamesSDK` в `Project → Project Settings → Plugins`.
 
-В Web экспорт в `Features` нужно добавить:
+![Project → Project Settings → Plugin](./assets/project_settings_plugins.png "Project → Project Settings → Plugin")
 
-* `yandex_sdk` - для включения Yandex Games SDK в проект;
-* `yandex_sdk_auto_init` - для включения автоматической инициализации всех модулей на старте игры.
+После включения плагина, в `Project → Project Settings → Globals → Autoload` автоматически добавится глобальный объект `YandexSDK`.
 
-![Пример Features в экспорте](./assets/export_example.png "Пример Features в экспорте")
+![Project → Project Settings → Globals → Autoload](./assets/project_settings_globals_autoload.png "Project → Project Settings → Globals → Autoload")
 
 ## Модули
 
@@ -36,19 +42,44 @@
 
 ## Использование
 
-Взаимодействие с плагином происходит через глобальную переменную `YandexSDK`.  
+> [!NOTE]
+> Взаимодействие с плагином происходит через глобальную переменную `YandexSDK`.  
+
+При включённом плагине `YandexGamesSDK` в нижней панели редактора `Godot` появится `Yandex Games SDK` вкладка:
+
+![Панель YandexGamesSDK](./assets/yandex_games_sdk_panel.png "Панель YandexGamesSDK")
+
 Ниже представлены часто используемые методы.
 
 ### Инициализация
 
-Сперва нужно инициализировать модули, если `yandex_sdk_auto_init` feature не была установлена:
+<details><summary><i><small>Если опция <code>Auto Init</code> <u style="color:green"><b>включена</b></u> в панели <code>Yandex Games SDK</code></small></i></summary>
 
 ```gdscript
-await YandexSDK.init()
-await YandexSDK.player.init()
-await YandexSDK.leaderboard.init()
-await YandexSDK.payments.init()
+func _ready() -> void:
+  if YandexSDK.is_inited():
+    _on_init_succeeded()
+  else:
+    YandexSDK.init_succeeded.connect(_on_init_succeeded)
+
+func _on_init_succeeded() -> void:
+  # Твой код ...
 ```
+
+</details>
+
+<details><summary><i><small>Если опция <code>Auto Init</code> <u style="color:red"><b>выключена</b></u> в панели <code>Yandex Games SDK</code></small></i></summary>
+
+```gdscript
+func _ready() -> void:
+  await YandexSDK.init()
+  await YandexSDK.player.init()
+  await YandexSDK.leaderboard.init()
+  await YandexSDK.payments.init()
+  # Твой код ...
+```
+
+</details>
 
 ### Баннерная реклама
 
@@ -127,7 +158,7 @@ await YandexSDK.leaderboard.set_score(leaderboard_name, score)
 ## Демо сцена
 
 Скачав весь проект, можно протестировать функции на интерактивной сцене.  
-Готовый проект можно сказать в разделе с релизами.
+Готовый проект можно скачать в разделе с релизами.
 
 Дополнительную информацию можно посмотреть здесь:  
 [https://yandex.ru/dev/games/doc/ru/concepts/local-launch](https://yandex.ru/dev/games/doc/ru/concepts/local-launch)
@@ -155,8 +186,8 @@ You can open your game with https://yandex.ru/games/app/<app-id>/?draft=true&gam
 
 ## Совместимость
 
-* Godot 4.4+;
-* Поддерживаются браузерные версии игр на платформе Яндекс Игр.
+* Godot 4.4+
+* Поддерживаются браузерные версии игр на платформе Яндекс Игр
 
 ## Лицензия
 

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Yandex games SDK"
+config/tags=PackedStringArray("api", "web")
 run/main_scene="uid://dxpg0e4w027fm"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -25,4 +26,11 @@ enabled=PackedStringArray("res://addons/yandex_games_sdk/plugin.cfg")
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+
+[yandex_games_sdk]
+
+yandex_sdk_enabled=false
+yandex_sdk_auto_init=false
+custom_head_include=""

@@ -1,6 +1,6 @@
 ## A class that wraps JavaScript promises in Godot, allowing asynchronous operations to be awaited.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b][br]
 ## It emits a signal when the operation is settled, either resolved or rejected.[br]
@@ -55,7 +55,7 @@ func wait() -> PromiseResult:
 
 ## A helper class that represents the result of a settled promise.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b]
 class PromiseResult:

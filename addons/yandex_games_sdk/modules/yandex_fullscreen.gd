@@ -1,6 +1,6 @@
 ## A Module for Managing Fullscreen Browser Mode.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides functionality for interacting with the browser's fullscreen mode.[br]

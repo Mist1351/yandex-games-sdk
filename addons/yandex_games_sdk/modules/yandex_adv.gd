@@ -1,6 +1,6 @@
 ## A Module for Managing Ads in Yandex Games.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## Provides tools for integrating and managing ad units in your games.[br]
 ## [br]
@@ -208,7 +208,7 @@ func get_banner_status() -> Variant:
 
 
 ## [b]@async[/b][br]
-## Displays the sticky banner ad.[br]
+## Show the sticky banner ad.[br]
 ## [br]
 ## [color=deep_sky_blue][b]@note:[/b][/color] If the method returned [code]null[/code], you can retrieve the possible reason code using the [method get_banner_reason] method.[br]
 ## [br]
@@ -246,7 +246,7 @@ func show_banner() -> Variant:
 
 
 ## [b]@async[/b][br]
-## Displays the sticky banner ad.[br]
+## Hide the sticky banner ad.[br]
 ## [br]
 ## [b]@emits[/b] [signal YandexGamesSDK.sdk_error] — Internal SDK error.[br]
 ## [b]@emits[/b] [signal hide_banner_succeeded] — The request was completed successfully.[br]

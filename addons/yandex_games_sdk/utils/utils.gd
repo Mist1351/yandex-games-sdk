@@ -1,6 +1,6 @@
 ## A utility class providing helper functions for working with the Yandex SDK.
 ##
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b][br]
 ## This includes checking features, interacting with JavaScript objects, and retrieving properties dynamically.
@@ -120,7 +120,7 @@ static func has_focus() -> bool:
 
 ## A helper class for limiting the rate of API calls based on a timeout mechanism.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [b]@inner[/b]
 class CallRateLimiter:

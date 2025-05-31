@@ -1,6 +1,6 @@
 ## A Module for Managing Player Data and Game State.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides tools to save and manage the player's game state data, such as completed levels, experience, or in-game purchases, directly on the Yandex server. It also provides access to user profile information, like the player's name, enabling a more personalized gaming experience.[br]

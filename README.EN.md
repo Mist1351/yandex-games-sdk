@@ -4,22 +4,28 @@
 
 ![Godot and Yandex Games](./assets/logo.png "Godot and Yandex Games")
 
+## :memo:️ Disclaimer
+
+> [!NOTE]
+> This is an **unofficial** Godot plugin project based on the [`Yandex Games SDK`](https://yandex.com/dev/games/doc/en/sdk/sdk-about "Yandex Games SDK").  
+> All mentioned trademarks, service names, and logos belong to their respective owners.  
+> More info: [`https://yandex.com/dev/games/doc/en/concepts/quick-start`](https://yandex.com/dev/games/doc/en/concepts/quick-start "Yandex Games SDK")
+
 ## Description
 
 This plugin provides integration of the Yandex Games SDK with the Godot 4.4+ game engine, allowing developers to use Yandex Games platform features such as authentication, data saving, purchases, advertising, and more.
 
 ## Installation
 
-Download the latest release of the plugin.  
-Place the `addons/yandex_games_sdk` folder in your Godot project directory.  
-Enable the `YandexGamesSDK` plugin in `Project Settings → Plugins`.
+Download the latest plugin release - [archive](https://github.com/Mist1351/yandex-games-sdk/releases/latest).  
+Place the `addons/yandex_games_sdk` folder inside your Godot project directory.  
+Enable the `YandexGamesSDK` plugin in `Project → Project Settings → Plugins`.
 
-In Web export, add the following to `Features`:
+![Project → Project Settings → Plugin](./assets/project_settings_plugins.png "Project → Project Settings → Plugin")
 
-* `yandex_sdk` - to enable Yandex Games SDK in the project;
-* `yandex_sdk_auto_init` - to enable automatic initialization of all modules at game startup.
+Once the plugin is enabled, a global object named `YandexSDK` will be automatically added under `Project Settings → Globals → Autoload`.
 
-![Export Features example](./assets/export_example.png "Export Features example")
+![Project → Project Settings → Globals → Autoload](./assets/project_settings_globals_autoload.png "Project → Project Settings → Globals → Autoload")
 
 ## Modules
 
@@ -36,19 +42,43 @@ In Web export, add the following to `Features`:
 
 ## Usage
 
-Interaction with the plugin occurs through the global variable `YandexSDK`.  
+> [!NOTE]
+> Interaction with the plugin occurs through the global variable `YandexSDK`.  
+
+When the `YandexGamesSDK` plugin is enabled, a new `Yandex Games SDK` tab will appear in the bottom panel of the `Godot` editor:
+
+![YandexGamesSDK Panel](./assets/yandex_games_sdk_panel.png "YandexGamesSDK Panel")
+
 Below are commonly used methods.
 
 ### Initialization
 
-First, initialize the modules if the `yandex_sdk_auto_init` feature was not set:
+<details><summary><i><small>If the <code>Auto Init</code> option is <u style="color:green"><b>enabled</b></u> in the <code>Yandex Games SDK</code> panel</small></i></summary>
 
 ```gdscript
-await YandexSDK.init()
-await YandexSDK.player.init()
-await YandexSDK.leaderboard.init()
-await YandexSDK.payments.init()
+func _ready() -> void:
+  if YandexSDK.is_inited():
+    _on_init_succeeded()
+  else:
+    YandexSDK.init_succeeded.connect(_on_init_succeeded)
+
+func _on_init_succeeded() -> void:
+  # Do something ...
 ```
+
+</details>
+
+<details><summary><i><small>If the <code>Auto Init</code> option is <u style="color:red"><b>disabled</b></u> in the <code>Yandex Games SDK</code> panel</small></i></summary>
+
+```gdscript
+func _ready() -> void:
+  await YandexSDK.init()
+  await YandexSDK.player.init()
+  await YandexSDK.leaderboard.init()
+  await YandexSDK.payments.init()
+```
+
+</details>
 
 ### Banner Ads
 
@@ -155,8 +185,8 @@ You can open your game with https://yandex.ru/games/app/<app-id>/?draft=true&gam
 
 ## Compatibility
 
-* Godot 4.4+;
-* Supports browser-based games on the Yandex Games platform..
+* Godot 4.4+
+* Supports browser-based games on the Yandex Games platform
 
 ## License
 

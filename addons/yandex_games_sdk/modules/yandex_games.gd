@@ -1,6 +1,6 @@
 ## A Module for Managing Links to Other Games.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## Provides functionality to retrieve accurate and platform-compatible links to other games hosted on Yandex Games.[br]

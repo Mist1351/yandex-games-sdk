@@ -1,6 +1,6 @@
 ## A Module for Managing Leaderboards in Yandex Games.
 ## 
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## A Module for managing leaderboard interactions in Yandex Games, including initializing leaderboards, submitting player scores, and retrieving leaderboard data.[br]

@@ -1,6 +1,6 @@
 ## The Main Class for Integrating Yandex Games Features.
 ##
-## [b]@version[/b] 1.0.2[br]
+## [b]@version[/b] 1.0.3[br]
 ## [b]@author[/b] Mist1351[br]
 ## [br]
 ## The core class of the plugin, providing a unified interface for accessing Yandex Games features and tools. This class serves as the central hub for managing game-related functionalities, such as advertisements, leaderboards, player data, device information, and more. It simplifies integration and ensures seamless interaction with the Yandex Games SDK.[br]
@@ -47,7 +47,7 @@ signal on_game_focused()
 signal on_game_blurred()
 
 
-const SDK_VERSION = "1.0.2"
+const SDK_VERSION = "1.0.3"
 
 
 ## Module for managing advertisements.
